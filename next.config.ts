@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    esmExternals: 'loose',
-  },
+  // Configure Turbopack (Next.js 16 default)
+  turbopack: {},
+  // Keep webpack config for backward compatibility when using --webpack flag
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.alias = {
