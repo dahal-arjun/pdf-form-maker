@@ -17,8 +17,9 @@ export default function PDFExporter() {
     try {
       const fillablePdfBytes = await createFillablePdf(null, fields);
 
-      // Create download link
-      const blob = new Blob([fillablePdfBytes], { type: 'application/pdf' });
+      // Create download link - ensure proper type for Blob
+      const uint8Array = new Uint8Array(fillablePdfBytes);
+      const blob = new Blob([uint8Array], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
